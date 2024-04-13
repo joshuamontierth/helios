@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Helvetica', sans-serif;
+            color: #fff;
+            background-image: url('{{filepath }}'); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #chart-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 80%; /* Adjust the width as needed */
+            margin-bottom: 80px; /* Add margin between charts and weather info */
+        }
+
+        #temperature-chart,
+        #precipitation-chart {
+            max-width: 40%;  /* Adjust the width of the charts */
+            height: auto; 
+            margin-top: 10px;
+        }
+
+        #temperature-chart img,
+        #precipitation-chart img {
+            width: 100%; /* Make the images fill the container */
+        }
+
+        #weather-info {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 40%; /* Adjust the width as needed */
+        }
+
+        #weather-description {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #temperature {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #humidity {
+            font-size: 16px;
+        }
+    </style>
+<script>
+    // Reload the page every hour (3600 seconds)
+    setInterval(function() {
+        location.reload();
+    }, 3600000);
+</script>
+
+
+</head>
+<body>
+    <div id="chart-container">
+        <div id="precipitation-chart">
+            <img src="{{ precipitation_chart }}" alt="Chance of Precipitation Chart">
+        </div>
+
+        <div id="temperature-chart">
+            <img src="{{ temperature_chart }}" alt="Hourly Temperature Chart">
+        </div>
+    </div>
+
+    <div id="weather-info">
+        <div id="weather-description">{{ weather_data['description'] }}</div>
+        <div id="temperature">Temperature: {{ weather_data['temperature'] }} &deg;F</div>
+        <div id="humidity">Humidity: {{ weather_data['humidity'] }}%</div>
+    </div>
+    
+
+</body>
+</html>
